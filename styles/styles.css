@@ -1,0 +1,17 @@
+canvas{
+    background-color: black;
+    aspect-ratio: 2/3;
+    width: 100%;
+}
+
+section {
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button{
+    margin: 50px;
+    width: 100%;
+}
