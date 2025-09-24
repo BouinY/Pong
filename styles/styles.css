@@ -1,8 +1,7 @@
 canvas{
     background-color: gray;
-    aspect-ratio: 2/3;
-    width: 100%;
-    max-width: 500px;
+    align-items: center;
+    justify-content: space-around;
 }
 
 section {
