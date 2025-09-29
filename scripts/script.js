@@ -11,6 +11,8 @@ const rayBall = 10;
 
 let xBar = canvasPong.width / 2;
 const yBar = 420;
+let movleftBar = false;
+let movrightBar = false;
 
 let speed = 4;
 let angle = 6;
@@ -25,15 +27,19 @@ buttonReset.addEventListener('click', reset);
 
 addEventListener("keydown", (event) => {
     if (event.key == "ArrowRight") {
-        if (xBar <= canvasPong.width - 40) {
-            xBar += 20;
-        }
+        movleftBar = true;
     }
     if (event.key == "ArrowLeft") {
-        if (xBar >= 40) {
-            xBar -= 20;
-        }
-        
+        movrightBar = true; 
+    }
+});
+
+addEventListener("keyup", (event) => {
+    if (event.key == "ArrowRight") {
+        movleftBar = false;
+    }
+    if (event.key == "ArrowLeft") {
+        movrightBar = false; 
     }
 });
 
@@ -101,6 +107,20 @@ function movementBall() {
     }
 }
 
+function movementBar() {
+    if (movleftBar == true) {
+        if (xBar <= canvasPong.width - 40) {
+            xBar += 10;
+        }
+    }
+    if (movrightBar == true) {
+        if (xBar >= 40) {
+            xBar -= 10;
+        }
+        
+    }
+}
+
 
 function drawBar() {
     bar.beginPath();
@@ -112,6 +132,7 @@ function drawBar() {
 function loop() {
     bar.clearRect(0, 0, canvasPong.width, canvasPong.height);
     movementBall();
+    movementBar();
     drawBall();
     drawBar();
     animationId = requestAnimationFrame(loop);
