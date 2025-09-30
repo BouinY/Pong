@@ -77,6 +77,7 @@ function reset() {
     xBar = canvasPong.width / 2;
     angle = Math.floor(Math.random() * 4);
     angle_precis = (Math.random());
+    speed = 1;
 }
 
 function drawBall() {
