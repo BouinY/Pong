@@ -1,7 +1,7 @@
 canvas{
     background-color: gray;
-    align-items: center;
-    justify-content: space-around;
+    display: flex;
+    margin: auto;
 }
 
 section {
@@ -11,7 +11,20 @@ section {
     flex-wrap: wrap;
 }
 
-button{
-    margin: 50px;
+#buttonReset{
+    margin: auto;
+    margin-top: 50px;
     width: 100%;
+}
+
+.buttonControl {
+    margin: auto;
+    margin-top: 50px;
+    width: 80px;
+    height: 80px;
+}
+
+p {
+    width: 100%;
+    text-align: center;
 }

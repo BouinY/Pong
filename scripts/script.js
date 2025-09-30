@@ -15,7 +15,7 @@ let movleftBar = false;
 let movrightBar = false;
 
 let speed = 1;
-let angle = Math.floor(Math.random() * 4);
+//let angle = Math.floor(Math.random() * 4);
 let dummy_angle;
 let angle_precis = (Math.random());
 
