@@ -1,4 +1,8 @@
 const buttonReset = document.getElementById("buttonReset");
+const buttonLeft = document.getElementById("buttonLeft");
+const buttonRight = document.getElementById("buttonRight");
+
+
 let textScoreCount = document.getElementById("textScoreCount");
 let canvasPong = document.getElementById("canvasPong");
 
@@ -7,7 +11,7 @@ let bar = canvasPong.getContext("2d");
 
 let xBall = canvasPong.width / 2;
 let yBall = canvasPong.height / 2;
-const rayBall = 10;
+const rayBall = 5;
 
 let xBar = canvasPong.width / 2;
 const yBar = 460;
@@ -15,7 +19,7 @@ let movleftBar = false;
 let movrightBar = false;
 
 let speed = 1;
-//let angle = Math.floor(Math.random() * 4);
+let angle = Math.floor(Math.random() * 4);
 let dummy_angle;
 let angle_precis = (Math.random());
 
@@ -26,22 +30,35 @@ setInterval(timeIncrease, 1000);
 yBall += speed;
 
 buttonReset.addEventListener('click', reset);
+buttonLeft.addEventListener('mousedown', () => {
+        movleftBar = true; 
+});
+buttonRight.addEventListener('mousedown', () => {
+        movrightBar = true; 
+});
+buttonLeft.addEventListener('mouseup', () => {
+        movleftBar = false; 
+});
+buttonRight.addEventListener('mouseup', () => {
+        movrightBar = false; 
+});
 
 addEventListener("keydown", (event) => {
     if (event.key == "ArrowRight") {
-        movleftBar = true;
+        movrightBar = true; 
     }
     if (event.key == "ArrowLeft") {
-        movrightBar = true; 
+        movleftBar = true;
+
     }
 });
 
 addEventListener("keyup", (event) => {
     if (event.key == "ArrowRight") {
-        movleftBar = false;
+        movrightBar = false;
     }
     if (event.key == "ArrowLeft") {
-        movrightBar = false; 
+        movleftBar = false; 
     }
 });
 
@@ -127,12 +144,12 @@ function movementBall() {
 }
 
 function movementBar() {
-    if (movleftBar == true) {
+    if (movrightBar == true) {
         if (xBar <= canvasPong.width - 40) {
             xBar += 5;
         }
     }
-    if (movrightBar == true) {
+    if (movleftBar == true) {
         if (xBar >= 40) {
             xBar -= 5;
         }
