@@ -58,6 +58,8 @@ function reset() {
     xBall = canvasPong.width / 2;
     yBall = canvasPong.height / 2;
     xBar = canvasPong.width / 2;
+    angle = Math.floor(Math.random() * 4);
+    angle_precis = (Math.random());
 }
 
 function drawBall() {
@@ -74,7 +76,10 @@ function collisionCheck() {
             angle = 2;
         } else if (yBall >= yBar - rayBall && (xBall >= xBar -30 && xBall <= xBar + 30 )) {
             angle = 0; 
-        }  
+        }  else if ( yBall >= canvasPong.height - rayBall) {
+            reset();
+            alert("You lost!");
+        }
     } else if (angle == 0) {
         if (xBall >= canvasPong.width - rayBall) {
             angle = 1;
@@ -86,6 +91,9 @@ function collisionCheck() {
             angle = 3;
         } else if ( yBall >= yBar - rayBall && (xBall >= xBar -30 && xBall <= xBar + 30 )) {
             angle = 1 ;
+        } else if ( yBall >= canvasPong.height - rayBall) {
+            reset();
+            alert("You lost!");
         }
     } else if (angle == 1) {
         if (xBall <= rayBall) {
