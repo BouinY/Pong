@@ -10,12 +10,14 @@ let yBall = canvasPong.height / 2;
 const rayBall = 10;
 
 let xBar = canvasPong.width / 2;
-const yBar = 420;
+const yBar = 460;
 let movleftBar = false;
 let movrightBar = false;
 
-let speed = 4;
-let angle = 6;
+let speed = 1;
+let angle = Math.floor(Math.random() * 4);
+let dummy_angle;
+let angle_precis = (Math.random());
 
 let animationId;
 
@@ -65,44 +67,53 @@ function drawBall() {
     ball.stroke();
 }
 
-function movementBall() {
-     if (angle > 270 && angle < 360) {
+function collisionCheck() {
+    dummy_angle = angle
+    if (angle == 3) {
         if (xBall >= canvasPong.width - rayBall) {
-            angle = 181 + Math.random()*88;
+            angle = 2;
         } else if (yBall >= yBar - rayBall && (xBall >= xBar -30 && xBall <= xBar + 30 )) {
-            angle = 1 + Math.random()*88;
+            angle = 0; 
         }  
-    } else if (angle > 0 && angle < 90) {
+    } else if (angle == 0) {
         if (xBall >= canvasPong.width - rayBall) {
-            angle = 91 + Math.random()*88;
+            angle = 1;
         } else if ( yBall <= rayBall) {
-            angle = 271 + Math.random()*88;
+            angle = 3;
         }  
-    } else if (angle > 180 && angle < 270) {
+    } else if (angle  ==  2) {
         if (xBall <= rayBall) {
-            angle = 271 + Math.random()*88;
+            angle = 3;
         } else if ( yBall >= yBar - rayBall && (xBall >= xBar -30 && xBall <= xBar + 30 )) {
-            angle = 91 + Math.random()*88;
-        }  
-    } else if (angle > 90 && angle < 180) {
+            angle = 1 ;
+        }
+    } else if (angle == 1) {
         if (xBall <= rayBall) {
-            angle = 1 + Math.random()*88;
+            angle = 0 ;
         } else if ( yBall <= rayBall) {
-            angle = 181 + Math.random()*88;
+            angle = 2 ;
         }  
     }
 
-    if (angle > 270 && angle < 360) {
-        xBall += speed;
+    if (dummy_angle != angle) {
+        angle_precis = (Math.random() *0.5 + 0.3);
+        speed += 0.05;
+    }
+}
+
+function movementBall() {
+    collisionCheck();
+    if (angle == 3) {
+        xBall += speed *angle_precis;
         yBall += speed;
-    } else if (angle > 0 && angle < 90) {
-        xBall += speed;
+    } else if (angle == 0) {
+        xBall += speed*angle_precis;
         yBall -= speed;
-    } else if (angle > 180 && angle < 270) {
-        xBall -= speed;
+    } else if (angle ==  2) {
+        xBall -= speed*angle_precis;
         yBall += speed;
-    } else if (angle > 90 && angle < 180) {
-        xBall -= speed;
+    } else if (angle == 1) {
+        xBall -= speed*angle_precis;
         yBall -= speed;
     }
 }
@@ -110,12 +121,12 @@ function movementBall() {
 function movementBar() {
     if (movleftBar == true) {
         if (xBar <= canvasPong.width - 40) {
-            xBar += 10;
+            xBar += 5;
         }
     }
     if (movrightBar == true) {
         if (xBar >= 40) {
-            xBar -= 10;
+            xBar -= 5;
         }
         
     }
